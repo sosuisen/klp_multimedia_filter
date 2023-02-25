@@ -1,4 +1,4 @@
-PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
+PIXI.filters.EdgeFilter = class extends PIXI.Filter {
   constructor() {
     // Normalized座標系では左上が原点
     const vertexSrc = `
@@ -54,19 +54,21 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
           
           // Original
           // gl_FragColor = texture2D(uSampler, vTextureCoord);
-          
-          // Box Blur
+
+          // Edge detection
+          // 周りの色が全て同じなら黒になります。
+          // 周りの色の平均値よりも明るい点のみ色がつきます。
           gl_FragColor = (
-            texture2D(uSampler, vBlurTexCoords[0]) +
-            texture2D(uSampler, vBlurTexCoords[1]) +
-            texture2D(uSampler, vBlurTexCoords[2]) +
-            texture2D(uSampler, vBlurTexCoords[3]) +
-            texture2D(uSampler, vBlurTexCoords[4]) +
-            texture2D(uSampler, vBlurTexCoords[5]) +
-            texture2D(uSampler, vBlurTexCoords[6]) +
-            texture2D(uSampler, vBlurTexCoords[7]) +
-            texture2D(uSampler, vBlurTexCoords[8])                         
-          ) / 9.0;
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[0]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[1]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[2]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[3]) +
+            (8.0) * texture2D(uSampler, vBlurTexCoords[4]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[5]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[6]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[7]) +
+            (-1.0) * texture2D(uSampler, vBlurTexCoords[8])                         
+          );
         }
       `;
 

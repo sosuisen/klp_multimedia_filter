@@ -4,7 +4,7 @@ const color = 0x909000;
 // 絵の縦横サイズ
 const imgSize = 260;
 
-let app = new PIXI.Application({ antialias: true, width: imgSize * 3, height: imgSize * 2 });
+const app = new PIXI.Application({ antialias: true, width: imgSize * 3, height: imgSize * 2 });
 
 document.body.appendChild(app.view);
 
@@ -35,19 +35,22 @@ const style = new PIXI.TextStyle({
   strokeThickness: 3,
 });
 
+// Original
+bg1.addChild(new PIXI.Text('Original', style));
+
 // 内蔵ぼかしフィルタ（Gaussian Blur）
-bg1.filters = [new PIXI.filters.BlurFilter(1)];
-bg1.addChild(new PIXI.Text('Normal（Alpha 0.5）', style));
+bg2.filters = [new PIXI.filters.BlurFilter(2)];
+bg2.addChild(new PIXI.Text('Gaussian Blur', style));
 
 // boxblur.js によるぼかしフィルタ（Box Blur）
-bg2.filters = [new PIXI.filters.BoxBlurFilter()];
-bg2.addChild(new PIXI.Text('Multiply', style));
-console.log(kyoco.width);
-// 
-bg3.addChild(new PIXI.Text('Add', style));
+bg3.filters = [new PIXI.filters.BoxBlurFilter()];
+bg3.addChild(new PIXI.Text('Box Blur(5x5)', style));
 
-// 
-bg4.addChild(new PIXI.Text('Screen', style));
+// edge.js によるエッジ検出フィルタ（Edge）
+bg4.filters = [new PIXI.filters.EdgeFilter()];
+bg4.addChild(new PIXI.Text('Edge', style));
+
+
 
 /**
  * 基本課題

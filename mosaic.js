@@ -14,6 +14,7 @@ PIXI.filters.MosaicFilter = class extends PIXI.Filter {
           float mosaicSize = 5.0;
           // スクリーン座標系へ変換
           vec2 screenPosition = vTC.xy * outputFrame.zw;
+          
           // 1辺がmosaicSizeの正方形の左上隅の座標
           vec2 cornerPosition = floor(screenPosition / mosaicSize) * mosaicSize;
           // 正規化座標へ戻して代入

@@ -50,16 +50,14 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
     const fragmentSrc = `
         precision mediump float;
         // varying:  頂点シェーダーから、フラグメントシェーダーへ転送されたデータ
+        varying vec2 vTextureCoord;
         varying vec2 vBlurTexCoords[9];
         uniform sampler2D uSampler;
 
         void main(void) {
-          // Kernel
-          // https://en.wikipedia.org/wiki/Kernel_(image_processing)
-          
           // Original
           // gl_FragColor = texture2D(uSampler, vTextureCoord);
-          
+
           // Box Blur
           gl_FragColor = (
             texture2D(uSampler, vBlurTexCoords[0]) +

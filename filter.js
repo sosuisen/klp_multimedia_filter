@@ -57,9 +57,9 @@ bg4.addChild(new PIXI.Text('Edge', style));
  */ 
 // カスタムフィルタを適用
 //const myFilter = new PIXI.filters.MyFilter1());
-//bg5.filters = [myFilter];
+bg5.filters = [new PIXI.filters.GrayscaleFilter];
 bg5.addChild(new PIXI.Text('Grayscale（基本課題）', style));
 
 //const myFilter2 = new PIXI.filters.MyFilter2();
-//bg6.filters = [myFilter];
+bg6.filters = [new PIXI.filters.MosaicFilter];
 bg6.addChild(new PIXI.Text('モザイク（発展課題）', style));

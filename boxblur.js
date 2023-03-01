@@ -1,6 +1,5 @@
 PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
   constructor() {
-    // Normalized座標系では左上が原点
     const vertexSrc = `
         uniform vec4 outputFrame; // フィルタの適用先の矩形(x, y, z, w)。zは幅、wは高さ。
         attribute vec2 aVertexPosition; // 0.0から1.0に正規化されたフィルタ座標（フィルタ適用先の矩形内のローカル座標）
@@ -8,7 +7,6 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
         uniform vec4 inputSize; // 入力画像の横縦サイズ(x, y, z, w)。zは1/x、wは1/y。
         varying vec2 vTextureCoord; // aVertexPositionに対応する入力画像上の正規化座標
         varying vec2 vBlurTexCoords[9];
-        
 
         vec4 filterVertexPosition( void )
         {

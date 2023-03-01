@@ -48,11 +48,12 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
     `;
 
     const fragmentSrc = `
-        precision mediump float;
+        uniform sampler2D uSampler; // 適用するテクスチャ
+        
+        // テクスチャ上のどの座標の色を参照するか
         // varying:  頂点シェーダーから、フラグメントシェーダーへ転送されたデータ
-        varying vec2 vTextureCoord;
+        varying vec2 vTextureCoord; 
         varying vec2 vBlurTexCoords[9];
-        uniform sampler2D uSampler;
 
         void main(void) {
           // Original

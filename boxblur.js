@@ -2,12 +2,14 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
   constructor() {
     // Normalized座標系では左上が原点
     const vertexSrc = `
-        attribute vec2 aVertexPosition;
-        uniform mat3 projectionMatrix;
-        varying vec2 vTextureCoord;
+        uniform vec4 outputFrame; // フィルタの適用先の矩形(x, y, z, w)。zは幅、wは高さ。
+        attribute vec2 aVertexPosition; // 0.0から1.0に正規化されたフィルタ座標（フィルタ適用先の矩形内のローカル座標）
+        uniform mat3 projectionMatrix; // PixiJSのviewportからWebGLのviewportへの変換行列
+        uniform vec4 inputSize; // 入力画像の横縦サイズ(x, y, z, w)。zは1/x、wは1/y。
+        varying vec2 vTextureCoord; // aVertexPositionに対応する入力画像上の正規化座標
         varying vec2 vBlurTexCoords[9];
-        uniform vec4 inputSize;
-        uniform vec4 outputFrame;
+        
+
         vec4 filterVertexPosition( void )
         {
             vec2 position = aVertexPosition * max(outputFrame.zw, vec2(0.)) + outputFrame.xy;
@@ -26,6 +28,9 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
 
             /**
              * 3x3のカーネルに対応する座標を求める
+             * 入力画像上の1ピクセルは、
+             * vTextureCoord上では幅が1/inputSize.x、高さが1/inputSize.y
+             * これは幅が1*inputSize.z、高さが1*inputSize.wとも書ける。
              */
             // 1行目(yが-1)
             vBlurTexCoords[0] = vTextureCoord + vec2(-1.0, -1.0) * inputSize.zw;

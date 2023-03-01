@@ -27,11 +27,32 @@ PIXI.filters.MosaicFilter = class extends PIXI.Filter {
     `;
 
     const fragmentSrc = `
+        precision highp float; // outputFrame を使う場合、highp 指定が必要
+        uniform vec4 outputFrame;
+
         varying vec2 vTextureCoord;
         uniform sampler2D uSampler;
 
         void main(void) {
-          gl_FragColor = texture2D(uSampler, vTextureCoord);
+          // vTextureCoordは直接変更できないため別の変数へコピー
+          vec2 vTC = vTextureCoord;
+
+          float mosaicSize = 5.0;
+          // スクリーン座標系へ変換
+          float screenX = vTC.x * outputFrame.z;
+          // 1辺がmosaicSizeの正方形の左上隅の座標
+          float cornerX = floor(screenX / mosaicSize) * mosaicSize;
+          // 正規化座標へ戻して代入
+          vTC.x = cornerX / outputFrame.z;
+
+          // スクリーン座標系へ変換
+          float screenY = vTC.y * outputFrame.w;
+          // 1辺がmosaicSizeの正方形の左上隅の座標
+          float cornerY = floor(screenY / mosaicSize) * mosaicSize;
+          // 正規化座標へ戻して代入
+          vTC.y = cornerY / outputFrame.w;
+
+          gl_FragColor = texture2D(uSampler, vTC);
         }
       `;
 

@@ -50,8 +50,6 @@ bg3.addChild(new PIXI.Text('Box Blur(5x5)', style));
 bg4.filters = [new PIXI.filters.EdgeFilter()];
 bg4.addChild(new PIXI.Text('Edge', style));
 
-
-
 /**
  * 基本課題
  */ 

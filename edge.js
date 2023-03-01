@@ -25,15 +25,9 @@ PIXI.filters.EdgeFilter = class extends PIXI.Filter {
       `;
 
     super(
-<<<<<<< HEAD
       null, // Use default vertex shader
       fragmentSrc, // fragment shader
       {} // uniforms
-=======
-      vertexSrc,
-      fragmentSrc,
-      {}
->>>>>>> 726ee82 (fix: add kadai-kihon, hatten)
     );
   }
 };

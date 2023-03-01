@@ -34,16 +34,16 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
              */
             // 1行目(yが-1)
             vBlurTexCoords[0] = vTextureCoord + vec2(-1.0, -1.0) * inputSize.zw;
-            vBlurTexCoords[1] = vTextureCoord + vec2(0.0, -1.0) * inputSize.zw;
-            vBlurTexCoords[2] = vTextureCoord + vec2(1.0, -1.0) * inputSize.zw;
+            vBlurTexCoords[1] = vTextureCoord + vec2( 0.0, -1.0) * inputSize.zw;
+            vBlurTexCoords[2] = vTextureCoord + vec2( 1.0, -1.0) * inputSize.zw;
             // 2行目(yが0)
-            vBlurTexCoords[3] = vTextureCoord + vec2(-1.0, 0.0) * inputSize.zw;
-            vBlurTexCoords[4] = vTextureCoord + vec2(0.0, 0.0) * inputSize.zw;
-            vBlurTexCoords[5] = vTextureCoord + vec2(1.0, 0.0) * inputSize.zw;
+            vBlurTexCoords[3] = vTextureCoord + vec2(-1.0,  0.0) * inputSize.zw;
+            vBlurTexCoords[4] = vTextureCoord + vec2( 0.0,  0.0) * inputSize.zw;
+            vBlurTexCoords[5] = vTextureCoord + vec2( 1.0,  0.0) * inputSize.zw;
             // 3行目(yが1)
-            vBlurTexCoords[6] = vTextureCoord + vec2(-1.0, 1.0) * inputSize.zw;
-            vBlurTexCoords[7] = vTextureCoord + vec2(0.0, 1.0) * inputSize.zw;
-            vBlurTexCoords[8] = vTextureCoord + vec2(1.0, 1.0) * inputSize.zw;
+            vBlurTexCoords[6] = vTextureCoord + vec2(-1.0,  1.0) * inputSize.zw;
+            vBlurTexCoords[7] = vTextureCoord + vec2( 0.0,  1.0) * inputSize.zw;
+            vBlurTexCoords[8] = vTextureCoord + vec2( 1.0,  1.0) * inputSize.zw;
         }
     `;
 

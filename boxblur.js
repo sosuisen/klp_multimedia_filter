@@ -26,7 +26,7 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
       `;
 
     super(
-      null, // vertex shader
+      null, // Use default vertex shader
       fragmentSrc, // fragment shader
       {} // uniforms
     );

@@ -12,13 +12,13 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
 
         vec4 filterVertexPosition( void )
         {
-            vec2 position = aVertexPosition * max(outputFrame.zw, vec2(0.)) + outputFrame.xy;
+            vec2 position = aVertexPosition * outputFrame.zw + outputFrame.xy;
             return vec4((projectionMatrix * vec3(position, 1.0)).xy, 0.0, 1.0);
         }
         
         vec2 filterTextureCoord( void )
         {
-            return aVertexPosition * (outputFrame.zw * inputSize.zw);
+            return aVertexPosition * outputFrame.zw * inputSize.zw;
         }
         
         void main(void)

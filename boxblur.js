@@ -2,20 +2,24 @@ PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
   constructor() {
     // Normalized座標系では左上が原点
     const vertexSrc = `
+        attribute vec2 aVertexPosition; // フィルタ適用先の矩形内のローカル座標（フィルタ座標）。0.0-1.0の値に正規化されている。
         uniform vec4 outputFrame; // フィルタの適用先の矩形(x, y, z, w)。zは幅、wは高さ。
-        attribute vec2 aVertexPosition; // 0.0から1.0に正規化されたフィルタ座標（フィルタ適用先の矩形内のローカル座標）
-        uniform mat3 projectionMatrix; // PixiJSのviewportからWebGLのviewportへの変換行列
+        uniform mat3 projectionMatrix; // クリップ座標系への変換行列
         uniform vec4 inputSize; // 入力画像の横縦サイズ(x, y, z, w)。zは1/x、wは1/y。
-        varying vec2 vTextureCoord; // aVertexPositionに対応する入力画像上の正規化座標
+        varying vec2 vTextureCoord; // クリップ座標に対応する入力画像上の正規化座標
         varying vec2 vBlurTexCoords[9];
         
 
+        // クリップ座標を返す
         vec4 filterVertexPosition( void )
         {
+            // スクリーン座標（PixiJSの描画先のcanvas全体からみた座標）を求める式
             vec2 position = aVertexPosition * outputFrame.zw + outputFrame.xy;
+            // スクリーン座標をクリップ座標へ変換する。値は0.0-1.0へ正規化される。
             return vec4((projectionMatrix * vec3(position, 1.0)).xy, 0.0, 1.0);
         }
         
+        // クリップ座標に対応する入力画像上での座標を返す（0.0-1.0へ正規化）
         vec2 filterTextureCoord( void )
         {
             return aVertexPosition * outputFrame.zw * inputSize.zw;

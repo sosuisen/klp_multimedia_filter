@@ -45,7 +45,7 @@ const style = new PIXI.TextStyle({
 bg1.addChild(new PIXI.Text('Original', style));
 
 // 内蔵ぼかしフィルタ（Gaussian Blur）
-bg2.filters = [new PIXI.filters.BlurFilter(2)];
+bg2.filters = [new PIXI.BlurFilter(2)];
 bg2.addChild(new PIXI.Text('Gaussian Blur', style));
 
 // boxblur.js によるぼかしフィルタ（Box Blur）

@@ -59,7 +59,7 @@ bg4.addChild(new PIXI.Text('Edge', style));
 
 
 /**
- * 基本課題
+ * 課題
  */ 
 // カスタムフィルタを適用
 bg5.filters = [new GrayscaleFilter];

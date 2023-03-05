@@ -1,4 +1,5 @@
-PIXI.filters.MosaicFilter = class extends PIXI.Filter {
+import * as PIXI from 'pixi.js';
+export const MosaicFilter = class extends PIXI.Filter {
   constructor() {
     const fragmentSrc = `
         precision highp float; // outputFrame を使う場合、highp 指定が必要

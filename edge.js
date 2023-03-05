@@ -1,4 +1,5 @@
-PIXI.filters.EdgeFilter = class extends PIXI.Filter {
+import * as PIXI from 'pixi.js';
+export const EdgeFilter = class extends PIXI.Filter {
   constructor() {
     const vertexSrc = `
         uniform vec4 outputFrame;

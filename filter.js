@@ -1,3 +1,9 @@
+import * as PIXI from 'pixi.js';
+import { BoxBlurFilter } from './boxblur.js';
+import { EdgeFilter } from './edge.js';
+import { GrayscaleFilter } from './grayscale.js';
+import { MosaicFilter } from './mosaic.js';
+
 // 重ねる色を指定
 const color = 0x909000;
 
@@ -43,19 +49,19 @@ bg2.filters = [new PIXI.filters.BlurFilter(2)];
 bg2.addChild(new PIXI.Text('Gaussian Blur', style));
 
 // boxblur.js によるぼかしフィルタ（Box Blur）
-bg3.filters = [new PIXI.filters.BoxBlurFilter()];
+bg3.filters = [new BoxBlurFilter()];
 bg3.addChild(new PIXI.Text('Box Blur(5x5)', style));
 
 // edge.js によるエッジ検出フィルタ（Edge）
-bg4.filters = [new PIXI.filters.EdgeFilter()];
+bg4.filters = [new EdgeFilter()];
 bg4.addChild(new PIXI.Text('Edge', style));
 
 /**
  * 基本課題
  */ 
 // カスタムフィルタを適用
-bg5.filters = [new PIXI.filters.GrayscaleFilter];
+bg5.filters = [new GrayscaleFilter];
 bg5.addChild(new PIXI.Text('Grayscale（基本課題）', style));
 
-bg6.filters = [new PIXI.filters.MosaicFilter];
+bg6.filters = [new MosaicFilter];
 bg6.addChild(new PIXI.Text('モザイク（発展課題）', style));

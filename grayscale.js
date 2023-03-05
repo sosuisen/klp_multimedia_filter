@@ -1,4 +1,5 @@
-PIXI.filters.GrayscaleFilter = class extends PIXI.Filter {
+import * as PIXI from 'pixi.js';
+export const GrayscaleFilter = class extends PIXI.Filter {
   constructor() {
     const fragmentSrc = `
         uniform sampler2D uSampler;

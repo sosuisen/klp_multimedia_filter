@@ -1,4 +1,5 @@
-PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
+import * as PIXI from 'pixi.js';
+export const BoxBlurFilter = class extends PIXI.Filter {
   constructor() {
     const fragmentSrc = `
         precision highp float; // inputSizeを利用する場合は highp 指定が必要

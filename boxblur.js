@@ -1,4 +1,5 @@
-PIXI.filters.BoxBlurFilter = class extends PIXI.Filter {
+import * as PIXI from 'pixi.js';
+export const BoxBlurFilter = class extends PIXI.Filter {
   constructor() {
     const vertexSrc = `
         uniform vec4 outputFrame; // フィルタの適用先の矩形(x, y, z, w)。zは幅、wは高さ。

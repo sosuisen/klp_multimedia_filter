@@ -50,7 +50,7 @@ bg2.addChild(new PIXI.Text('Gaussian Blur', style));
 
 // boxblur.js によるぼかしフィルタ（Box Blur）
 bg3.filters = [new BoxBlurFilter()];
-bg3.addChild(new PIXI.Text('Box Blur(5x5)', style));
+bg3.addChild(new PIXI.Text('Box Blur(3x3)', style));
 
 // edge.js によるエッジ検出フィルタ（Edge）
 bg4.filters = [new EdgeFilter()];

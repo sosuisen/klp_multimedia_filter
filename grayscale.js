@@ -8,7 +8,9 @@ export const GrayscaleFilter = class extends PIXI.Filter {
         void main(void) {
           vec4 color = texture2D(uSampler, vTextureCoord);
 
-          // color をグレースケールへ変換してください。
+          // colorの値を明るさ情報のみ（グレースケール）へ変換
+          float gray = color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722;
+          color.r = color.g = color.b = gray;
 
           gl_FragColor = color;
         }

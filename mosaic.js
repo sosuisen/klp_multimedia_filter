@@ -2,24 +2,20 @@ import * as PIXI from 'pixi.js';
 export const MosaicFilter = class extends PIXI.Filter {
   constructor() {
     const fragmentSrc = `
-      precision highp float; // outputFrame を使う場合、highp 指定が必要
-      uniform vec4 outputFrame; // フィルタの適用先のピクセルの矩形(x, y, z, w)。zは幅、wは高さ。
-
+      precision highp float;
+      uniform vec4 inputSize;
       varying vec2 vTextureCoord;
       uniform sampler2D uSampler;
 
       void main(void) {
-        // vTextureCoordは直接変更できないため別の変数へコピー
-        vec2 vTC = vTextureCoord;
-
         float mosaicSize = 5.0;
-        // スクリーン座標系へ変換
-        vec2 screenPosition = vTC.xy * outputFrame.zw;
+        vec2 texelPosition = vTextureCoord.xy * inputSize.xy;
       
+        // 1辺がmosaicSizeテクセルの正方形の、左上隅の座標
+        vec2 cornerPosition = floor(texelPosition / mosaicSize) * mosaicSize;
 
-
-  
-        gl_FragColor = texture2D(uSampler, vTC);
+        // 正規化座標へ戻してから渡す
+        gl_FragColor = texture2D(uSampler, cornerPosition * inputSize.zw);
       }
     `;
 

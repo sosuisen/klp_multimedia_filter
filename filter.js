@@ -4,11 +4,8 @@ import { EdgeFilter } from './edge.js';
 import { GrayscaleFilter } from './grayscale.js';
 import { MosaicFilter } from './mosaic.js';
 
-// 重ねる色を指定
-const color = 0x909000;
-
 // 絵の縦横サイズ
-const imgSize = 260;
+const imgSize = 256;
 
 const app = new PIXI.Application({ antialias: true, width: imgSize * 3, height: imgSize * 2 });
 

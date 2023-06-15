@@ -8,14 +8,9 @@ export const MosaicFilter = class extends PIXI.Filter {
       uniform sampler2D uSampler;
 
       void main(void) {
-        float mosaicSize = 5.0;
-        vec2 texelPosition = vTextureCoord.xy * inputSize.xy;
-      
-        // 1辺がmosaicSizeテクセルの正方形の、左上隅の座標
-        vec2 cornerPosition = floor(texelPosition / mosaicSize) * mosaicSize;
 
-        // 正規化座標へ戻してから渡す
-        gl_FragColor = texture2D(uSampler, cornerPosition * inputSize.zw);
+
+
       }
     `;
 

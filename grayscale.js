@@ -19,7 +19,7 @@ export const GrayscaleFilter = class extends PIXI.Filter {
     super(
       null,
       fragmentSrc, // fragment shader
-      {} // uniforms
+      {}
     );
   }
 };

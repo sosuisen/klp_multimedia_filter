@@ -1,23 +1,14 @@
 import * as PIXI from 'pixi.js';
+import fragment from './mosaic.frag';
+import vertex from './default.vert';
+
 export const MosaicFilter = class extends PIXI.Filter {
   constructor() {
-    const fragmentSrc = `
-      precision highp float;
-      uniform vec4 inputSize;
-      varying vec2 vTextureCoord;
-      uniform sampler2D uSampler;
-
-      void main(void) {
-
-
-
-      }
-    `;
-
-    super(
-      null,
-      fragmentSrc,
-      {}
-    );
+    super({
+      glProgram: new PIXI.GlProgram({
+        fragment,
+        vertex,
+      })
+    });
   }
 };

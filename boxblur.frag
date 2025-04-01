@@ -8,7 +8,7 @@ out vec4 fragColor;
 
 void main(void) {
     // original
-    // gl_FragColor = texture(uTexture, vTextureCoord);
+    // fragColor = texture(uTexture, vTextureCoord);
 
     // Box Blur
     fragColor = (texture(uTexture, vTextureCoord + vec2(-1.0f, -1.0f) * uInputSize.zw) +

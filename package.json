@@ -11,6 +11,7 @@
     "vite": "^6.2.3"
   },
   "dependencies": {
+    "pixi-filters": "^6.1.2",
     "pixi.js": "^8.9.1",
     "vite-plugin-string": "^1.2.3"
   }

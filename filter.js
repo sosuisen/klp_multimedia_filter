@@ -3,6 +3,7 @@ import { BoxBlurFilter } from './boxblur.js';
 import { EdgeFilter } from './edge.js';
 import { GrayscaleFilter } from './grayscale.js';
 import { MosaicFilter } from './mosaic.js';
+// import { AsciiFilter } from 'pixi-filters/ascii';
 
 // 絵の縦横サイズ
 const imgSize = 256;
@@ -17,7 +18,8 @@ const style = {
   stroke: { width: 3, color: 0xffffff }
 };
 const bg1 = PIXI.Sprite.from('kyocotan.png');
-const txt1 = new PIXI.Text({ text: 'Original', style })
+const txt1 = new PIXI.Text({ text: 'Original', style });
+
 const bg2 = PIXI.Sprite.from('kyocotan.png');
 const txt2 = new PIXI.Text({ text: 'Gaussian Blur', style });
 bg2.x = txt2.x = imgSize;
@@ -25,13 +27,16 @@ bg2.x = txt2.x = imgSize;
 const bg3 = PIXI.Sprite.from('kyocotan.png');
 const txt3 = new PIXI.Text({ text: 'Box Blur(3x3)', style });
 bg3.x = txt3.x = imgSize * 2;
+
 const bg4 = PIXI.Sprite.from('kyocotan.png');
 const txt4 = new PIXI.Text({ text: 'Edge', style });
 bg4.y = txt4.y = imgSize;
+
 const bg5 = PIXI.Sprite.from('kyocotan.png');
 const txt5 = new PIXI.Text({ text: 'Grayscale（基本課題）', style });
 bg5.x = txt5.x = imgSize;
 bg5.y = txt5.y = imgSize;
+
 const bg6 = PIXI.Sprite.from('kyocotan.png');
 const txt6 = new PIXI.Text({ text: 'モザイク（発展課題）', style });
 bg6.x = txt6.x = imgSize * 2;
@@ -54,12 +59,9 @@ container.addChild(txt6);
 app.stage.addChild(container);
 
 
-// Original
-
-
 // 内蔵ぼかしフィルタ（Gaussian Blur）
 bg2.filters = [new PIXI.BlurFilter({ strength: 2 })];
-
+// bg2.filters = [new AsciiFilter({ size: 7 })];
 
 // boxblur.js によるぼかしフィルタ（Box Blur）
 bg3.filters = [new BoxBlurFilter()];

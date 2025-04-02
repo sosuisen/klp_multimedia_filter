@@ -8,10 +8,7 @@ export const BoxBlurFilter = class extends PIXI.Filter {
       glProgram: new PIXI.GlProgram({
         fragment,
         vertex,
-      }),
-      resources: {
-        uniform: {}
-      }
+      })
     });
   }
 };
